@@ -85,16 +85,16 @@ reviewer_Agent = Agent(
     model=Groq(id="llama-3.3-70b-versatile", api_key=groq_api_key)
 )
 
-# agent_team = Agent(
-#     team=[research_agent, writer_agent, reviewer_Agent],
-#     model=Groq(id="llama-3.3-70b-versatile", api_key=groq_api_key),
-#     show_tool_calls=True,
-#     markdown=True,
-# )
+agent_team = Agent(
+    team=[research_agent, writer_agent, reviewer_Agent],
+    model=Groq(id="llama-3.3-70b-versatile", api_key=groq_api_key),
+    show_tool_calls=True,
+    markdown=True,
+)
 
 # agent_team.print_response(query, stream=False)
 
-app = Playground(agents=[research_agent, writer_agent, reviewer_Agent]).get_app()
+app = Playground(agents=[agent_team, research_agent, writer_agent, reviewer_Agent]).get_app()
 
 if __name__ == "__main__":
     serve_playground_app("playground_phidata:app", reload=True)
